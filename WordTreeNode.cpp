@@ -43,6 +43,26 @@ void WordTreeNode::increment_count(void)
   set_count(get_count() + 1);
 }
 
+WordTreeNode::BRANCH_TYPE WordTreeNode::get_branch_type(void)
+{
+  return _branch_type;
+}
+
+void WordTreeNode::set_branch_type(BRANCH_TYPE branch_type)
+{
+  _branch_type = branch_type;
+}
+
+WordTreeNode* WordTreeNode::get_parent_node(void)
+{
+  return _parent_node;
+}
+
+void WordTreeNode::set_parent_node(WordTreeNode* parent_node)
+{
+  _parent_node = parent_node;
+}
+
 WordTreeNode* WordTreeNode::get_branch(BRANCH_TYPE branch)
 {
   switch(branch)
