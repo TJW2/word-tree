@@ -28,6 +28,11 @@ bool WordTree::pass_word(std::string word, WordTreeNode*& current_node,
   }
 }
 
+void delete_node(WordTreeNode* node)
+{
+  throw "delete_node not yet implemented.";
+}
+
 WordTree::WordTree(void):
   _root_node(NULL)
 {
@@ -63,6 +68,26 @@ void WordTree::add_word(std::string word)
       }
     }
   }
+}
+
+WordTreeNode* WordTree::iter_next(void)
+{
+  throw "iter_next not yet implemented.";
+}
+
+void WordTree::iter_reset(void)
+{
+  throw "iter_reset not yet implemented.";
+}
+
+bool WordTree::is_word_in_tree(std::string word)
+{
+  throw "is_word_in_tree not yet implemented.";
+}
+
+bool WordTree::delete_word(std::string word)
+{
+  throw "delete_word not yet implemented.";
 }
 
 void WordTree::write_data(std::ostream* data_stream_ptr)
