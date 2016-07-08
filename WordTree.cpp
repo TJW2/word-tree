@@ -22,7 +22,8 @@ bool WordTree::pass_word(std::string word, WordTreeNode*& current_node,
   }
   else
   {
-    current_node->set_branch(pass_direction, new WordTreeNode(word));
+    current_node->set_branch(pass_direction,
+                             new WordTreeNode(word, pass_direction, current_node));
     return true;
   }
 }
@@ -37,7 +38,8 @@ void WordTree::add_word(std::string word)
   //If there is no root node yet
   if (!_root_node)
   {
-    _root_node = new WordTreeNode(word);
+    _root_node = new WordTreeNode(word, WordTreeNode::LEFT, NULL);
+    //Arbitrary choice of left - perhaps use a ROOT enum value?
   }
   else
   {

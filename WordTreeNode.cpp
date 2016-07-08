@@ -6,8 +6,11 @@
 #include <sstream>
 #include "WordTreeNode.h"
 
-WordTreeNode::WordTreeNode(std::string node_word):
+WordTreeNode::WordTreeNode(std::string node_word, BRANCH_TYPE branch_type,
+                           WordTreeNode* parent_node):
   _node_word(node_word),
+  _branch_type(branch_type),
+  _parent_node(parent_node),
   _count(0),
   _l_branch(NULL),
   _r_branch(NULL)

@@ -12,9 +12,16 @@ class WordTreeNode;
 
 class WordTreeNode
 {
+  public:
+
+    enum BRANCH_TYPE {LEFT, RIGHT};
+
   private:
 
     std::string _node_word;
+    BRANCH_TYPE _branch_type;
+    WordTreeNode* _parent_node;
+
     int _count;
 
     //Pointer to the WordTreeNode on the left branch of this one
@@ -24,9 +31,8 @@ class WordTreeNode
 
   public:
 
-    enum BRANCH_TYPE {LEFT, RIGHT};
-
-    WordTreeNode(std::string node_word);
+    WordTreeNode(std::string node_word, BRANCH_TYPE branch_type,
+                 WordTreeNode* parent_node);
 
     std::string get_node_word(void);
     void set_node_word(std::string node_word);
@@ -34,6 +40,12 @@ class WordTreeNode
     int get_count(void);
     void set_count(int count);
     void increment_count(void);
+
+    BRANCH_TYPE get_branch_type(void);
+    void set_branch_type(BRANCH_TYPE branch_type);
+
+    WordTreeNode* get_parent_node(void);
+    void set_parent_node(WordTreeNode* parent_node);
 
     WordTreeNode* get_branch(BRANCH_TYPE branch);
     void set_branch(BRANCH_TYPE branch, WordTreeNode* node);
