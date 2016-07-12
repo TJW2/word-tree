@@ -28,7 +28,7 @@ bool WordTree::pass_word(std::string word, WordTreeNode*& current_node,
   }
 }
 
-void delete_node(WordTreeNode* node)
+void WordTree::delete_node(WordTreeNode* node)
 {
   throw "delete_node not yet implemented.";
 }
