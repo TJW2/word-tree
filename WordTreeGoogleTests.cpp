@@ -31,15 +31,39 @@ class WordTreeNodeTest : public ::testing::Test
       right_test_node = new WordTreeNode(right_test_node_name,
                                          WordTreeNode::RIGHT, NULL);
     }
+
+    ~WordTreeNodeTest()
+    {
+      delete main_test_node;
+      delete left_test_node;
+      delete right_test_node;
+    }
 };
 
-TEST(WordTreeNode, Constructor) {
-  WordTreeNode* main_test_node =
-    new WordTreeNode(main_test_node_name, WordTreeNode::LEFT, NULL);
+TEST_F(WordTreeNodeTest, ConstructorDefaultValues)
+{
   EXPECT_EQ(main_test_node->get_node_word(), main_test_node_name);
   EXPECT_EQ(main_test_node->get_count(), default_count);
   EXPECT_EQ(main_test_node->get_branch(WordTreeNode::LEFT), default_l_branch);
   EXPECT_EQ(main_test_node->get_branch(WordTreeNode::RIGHT), default_r_branch);
+}
+
+TEST_F(WordTreeNodeTest, SetNodeWord)
+{
+  main_test_node->set_node_word(main_test_node_name_change);
+  EXPECT_EQ(main_test_node->get_node_word(), main_test_node_name_change);
+}
+
+TEST_F(WordTreeNodeTest, SetCount)
+{
+  main_test_node->set_count(change_count);
+  EXPECT_EQ(main_test_node->get_count(), change_count);
+}
+
+TEST_F(WordTreeNodeTest, IncrementCount)
+{
+  main_test_node->increment_count();
+  EXPECT_EQ(main_test_node->get_count(), default_count + 1);
 }
 
 int main(int argc, char **argv)
