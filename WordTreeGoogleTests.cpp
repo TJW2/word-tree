@@ -24,6 +24,8 @@ TEST(WordTreeNode, Constructor) {
   EXPECT_EQ(main_test_node->get_branch(WordTreeNode::RIGHT), default_r_branch);
 }
 
-int main()
+int main(int argc, char **argv)
 {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
