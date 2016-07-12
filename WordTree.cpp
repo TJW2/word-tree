@@ -38,7 +38,7 @@ bool WordTree::pass_word(std::string word, WordTreeNode*& current_node,
 WordTreeNode* WordTree::leftmost_child(WordTreeNode* node)
 {
   WordTreeNode* current_node = node;
-  while(!current_node->get_branch(WordTreeNode::LEFT))
+  while(current_node->get_branch(WordTreeNode::LEFT))
   {
     current_node = current_node->get_branch(WordTreeNode::LEFT);
   }
@@ -48,7 +48,7 @@ WordTreeNode* WordTree::leftmost_child(WordTreeNode* node)
 WordTreeNode* WordTree::first_left_ancestor(WordTreeNode* node)
 {
   WordTreeNode* current_node = node;
-  while(current_node->get_parent_node()->get_branch_type() != WordTreeNode::LEFT)
+  while(current_node->get_branch_type() != WordTreeNode::LEFT)
   {
     current_node = current_node->get_parent_node();
   }
@@ -109,12 +109,17 @@ WordTreeNode* WordTree::find_next_node(WordTreeNode* node)
   {
     next_node = first_left_ancestor(node)->get_parent_node();
   }
+  return next_node;
 }
 
 WordTreeNode* WordTree::iter_next(void)
 {
   WordTreeNode* current_node = _next_node;
-  _next_node = find_next_node(current_node);
+  if(current_node)
+  {
+    // If we have not reached the end of the tree
+    _next_node = find_next_node(current_node);
+  }
   return current_node;
 }
 
