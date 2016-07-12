@@ -15,6 +15,24 @@ int change_count = 2;
 WordTreeNode* default_l_branch = NULL;
 WordTreeNode* default_r_branch = NULL;
 
+class WordTreeNodeTest : public ::testing::Test
+{
+  public:
+    WordTreeNode* main_test_node;
+    WordTreeNode* left_test_node;
+    WordTreeNode* right_test_node;
+
+    WordTreeNodeTest()
+    {
+      main_test_node = new WordTreeNode(main_test_node_name,
+                                        WordTreeNode::LEFT, NULL);
+      left_test_node = new WordTreeNode(left_test_node_name,
+                                        WordTreeNode::LEFT, NULL);
+      right_test_node = new WordTreeNode(right_test_node_name,
+                                         WordTreeNode::RIGHT, NULL);
+    }
+};
+
 TEST(WordTreeNode, Constructor) {
   WordTreeNode* main_test_node =
     new WordTreeNode(main_test_node_name, WordTreeNode::LEFT, NULL);
