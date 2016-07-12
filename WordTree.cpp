@@ -70,7 +70,7 @@ void WordTree::add_word(std::string word)
   if (!_root_node)
   {
     _root_node = new WordTreeNode(word, WordTreeNode::LEFT, NULL);
-    //Arbitrary choice of left - perhaps use a ROOT enum value?
+    //LEFT required here for iterator
   }
   else
   {
