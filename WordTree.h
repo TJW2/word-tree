@@ -21,6 +21,8 @@ class WordTree
     //Returns the first LEFT-type ancestor of the given node encountered when
     //traversing the tree from the given node to the root
     WordTreeNode* first_left_ancestor(WordTreeNode* node);
+    // Returns the node that follows the given node in the tree
+    WordTreeNode* next_node(WordTreeNode* node);
     // Deletes the given node from the tree, but not its children. Assumes that
     // the node is in the tree
     void delete_node(WordTreeNode* node);
@@ -31,8 +33,6 @@ class WordTree
 
     void add_word(std::string word);
 
-    // Returns the node that follows the given node in the tree
-    WordTreeNode* next_node(WordTreeNode* node);
     // Returns the next node in the current iteration
     WordTreeNode* iter_next(void);
     //Resets the iteration to the first node in the tree
