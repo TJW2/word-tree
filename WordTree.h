@@ -22,7 +22,7 @@ class WordTree
     //traversing the tree from the given node to the root
     WordTreeNode* first_left_ancestor(WordTreeNode* node);
     // Returns the node that follows the given node in the tree
-    WordTreeNode* next_node(WordTreeNode* node);
+    WordTreeNode* find_next_node(WordTreeNode* node);
     // Deletes the given node from the tree, but not its children. Assumes that
     // the node is in the tree
     void delete_node(WordTreeNode* node);

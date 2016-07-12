@@ -26,7 +26,8 @@ bool WordTree::pass_word(std::string word, WordTreeNode*& current_node,
                              new WordTreeNode(word, pass_direction, current_node));
     current_node = current_node->get_branch(pass_direction);
     // If the new node should come next in the current iteration
-    if(next_node(current_node) == _next_node)
+    WordTreeNode* new_next_node = find_next_node(current_node);
+    if(new_next_node && new_next_node == _next_node)
     {
       _next_node = current_node;
     }
@@ -71,6 +72,7 @@ void WordTree::add_word(std::string word)
   {
     _root_node = new WordTreeNode(word, WordTreeNode::LEFT, NULL);
     //LEFT required here for iterator
+    _next_node = _root_node;
   }
   else
   {
@@ -96,10 +98,10 @@ void WordTree::add_word(std::string word)
   }
 }
 
-WordTreeNode* WordTree::next_node(WordTreeNode* node)
+WordTreeNode* WordTree::find_next_node(WordTreeNode* node)
 {
   WordTreeNode* next_node;
-  if(!node->get_branch(WordTreeNode::RIGHT))
+  if(node->get_branch(WordTreeNode::RIGHT))
   {
     next_node = leftmost_child(node->get_branch(WordTreeNode::RIGHT));
   }
@@ -112,7 +114,7 @@ WordTreeNode* WordTree::next_node(WordTreeNode* node)
 WordTreeNode* WordTree::iter_next(void)
 {
   WordTreeNode* current_node = _next_node;
-  _next_node = next_node(current_node);
+  _next_node = find_next_node(current_node);
   return current_node;
 }
 
