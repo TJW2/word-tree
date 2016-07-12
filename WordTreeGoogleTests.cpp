@@ -1,7 +1,9 @@
 /// WordTree and WordTreeNode Tests using Google Test
 /// TJW2
 
+#include <iostream>
 #include "WordTree.h"
+#include "WordTreeNode.h"
 #include "gtest/gtest.h"
 
 std::string main_test_node_name = "MainTestNode";
@@ -39,6 +41,28 @@ class WordTreeNodeTest : public ::testing::Test
       delete right_test_node;
     }
 };
+
+class WordTreeTest : public ::testing::Test
+{
+  public:
+    WordTree* test_tree;
+
+    WordTreeTest()
+    {
+      test_tree = new WordTree();
+      std::string test_string = "DBFACEG";
+      for (int i = 0; i < test_string.length(); i++)
+      {
+        test_tree->add_word(std::string(1,test_string[i]));
+      }
+    }
+
+    ~WordTreeTest()
+    {
+      delete test_tree;
+    }
+};
+
 
 TEST_F(WordTreeNodeTest, ConstructorDefaultValues)
 {
