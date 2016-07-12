@@ -24,8 +24,34 @@ bool WordTree::pass_word(std::string word, WordTreeNode*& current_node,
   {
     current_node->set_branch(pass_direction,
                              new WordTreeNode(word, pass_direction, current_node));
+    current_node = current_node->get_branch(pass_direction);
+    // If the new node should come next in the current iteration
+    if(next_node(current_node) == _next_node)
+    {
+      _next_node = current_node;
+    }
     return true;
   }
+}
+
+WordTreeNode* WordTree::leftmost_child(WordTreeNode* node)
+{
+  WordTreeNode* current_node = node;
+  while(!current_node->get_branch(WordTreeNode::LEFT))
+  {
+    current_node = current_node->get_branch(WordTreeNode::LEFT);
+  }
+  return current_node;
+}
+
+WordTreeNode* WordTree::first_left_ancestor(WordTreeNode* node)
+{
+  WordTreeNode* current_node = node;
+  while(current_node->get_parent_node()->get_branch_type() != WordTreeNode::LEFT)
+  {
+    current_node = current_node->get_parent_node();
+  }
+  return current_node;
 }
 
 void WordTree::delete_node(WordTreeNode* node)
@@ -70,14 +96,29 @@ void WordTree::add_word(std::string word)
   }
 }
 
+WordTreeNode* WordTree::next_node(WordTreeNode* node)
+{
+  WordTreeNode* next_node;
+  if(!node->get_branch(WordTreeNode::RIGHT))
+  {
+    next_node = leftmost_child(node->get_branch(WordTreeNode::RIGHT));
+  }
+  else
+  {
+    next_node = first_left_ancestor(node)->get_parent_node();
+  }
+}
+
 WordTreeNode* WordTree::iter_next(void)
 {
-  throw "iter_next not yet implemented.";
+  WordTreeNode* current_node = _next_node;
+  _next_node = next_node(current_node);
+  return current_node;
 }
 
 void WordTree::iter_reset(void)
 {
-  throw "iter_reset not yet implemented.";
+  _next_node = leftmost_child(_root_node);
 }
 
 bool WordTree::is_word_in_tree(std::string word)
