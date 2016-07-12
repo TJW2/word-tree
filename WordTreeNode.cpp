@@ -102,6 +102,7 @@ std::string WordTreeNode::to_string(void)
   std::ostringstream os;
   os << "_node_word: " << get_node_word() << std::endl;
   os << "_count: " << get_count() << std::endl;
+  os << "_branch_type: " << get_branch_type() << std::endl;
   os << "_l_branch: " << (get_branch(LEFT) ?
                           get_branch(LEFT)->get_node_word() :
                           "NULL ")
@@ -109,6 +110,10 @@ std::string WordTreeNode::to_string(void)
   os << "_r_branch: " << (get_branch(RIGHT) ?
                           get_branch(RIGHT)->get_node_word() :
                           "NULL ")
+     << std::endl;
+  os << "_parent_node: " << (get_parent_node() ?
+                             get_parent_node()->get_node_word() :
+                             "NULL ")
      << std::endl;
   return os.str();
 }
