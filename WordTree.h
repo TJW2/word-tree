@@ -15,8 +15,14 @@ class WordTree
     WordTreeNode* _next_node;
     bool pass_word(std::string word, WordTreeNode*& current_node,
                    WordTreeNode::BRANCH_TYPE pass_direction);
+    // Returns the leftmost leaf of the given node, and the node itself if it
+    // has no left child
+    WordTreeNode* leftmost_child(WordTreeNode* node);
+    //Returns the first LEFT-type ancestor of the given node encountered when
+    //traversing the tree from the given node to the root
+    WordTreeNode* first_left_ancestor(WordTreeNode* node);
     // Deletes the given node from the tree, but not its children. Assumes that
-    // the node is in the tree.
+    // the node is in the tree
     void delete_node(WordTreeNode* node);
 
   public:
@@ -25,7 +31,11 @@ class WordTree
 
     void add_word(std::string word);
 
+    // Returns the node that follows the given node in the tree
+    WordTreeNode* next_node(WordTreeNode* node);
+    // Returns the next node in the current iteration
     WordTreeNode* iter_next(void);
+    //Resets the iteration to the first node in the tree
     void iter_reset(void);
 
     bool is_word_in_tree(std::string word);
