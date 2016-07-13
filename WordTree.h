@@ -32,12 +32,12 @@ class WordTree
 
     WordTree(void);
 
-    void add_word(std::string word);
+    virtual void add_word(std::string word);
 
     // Returns the next node in the current iteration
-    std::pair<std::string, int>* iter_next(void);
+    virtual std::pair<std::string, int>* iter_next(void);
     //Resets the iteration to the first node in the tree
-    void iter_reset(void);
+    virtual void iter_reset(void);
 
     bool is_word_in_tree(std::string word);
     // If the given word lies in the tree, deletes it and returns true. Returns
@@ -46,7 +46,7 @@ class WordTree
 
     void write_data(std::ostream* data_stream_ptr);
 
-    ~WordTree(void);
+    virtual ~WordTree(void);
 };
 
 #endif
