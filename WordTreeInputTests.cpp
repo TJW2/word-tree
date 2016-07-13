@@ -24,7 +24,7 @@ TEST(WordTreeInput, MockSingleInput)
   EXPECT_CALL(mock_tree, iter_reset()).Times(1);
   EXPECT_CALL(mock_tree,
               iter_next()).WillOnce(Return(&mock_pair))
-                          .WillOnce(Return((std::pair<std::string, int>*)NULL));
+                          .WillOnce(Return(nullptr));
   EXPECT_EQ(most_common_word(mock_tree), mock_pair.first);
 }
 
