@@ -2,6 +2,8 @@
 /// TJW2
 
 #include "WordTreeInput.h"
+#include "MockWordTree.h"
+#include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
 TEST(WordTreeInput, SingleInput)
