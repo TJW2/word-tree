@@ -17,6 +17,7 @@ int change_count = 2;
 WordTreeNode* default_l_branch = NULL;
 WordTreeNode* default_r_branch = NULL;
 
+
 class WordTreeNodeTest : public ::testing::Test
 {
   public:
@@ -50,11 +51,6 @@ class WordTreeTest : public ::testing::Test
     WordTreeTest()
     {
       test_tree = new WordTree();
-      std::string test_string = "DBFACEG";
-      for (int i = 0; i < test_string.length(); i++)
-      {
-        test_tree->add_word(std::string(1,test_string[i]));
-      }
     }
 
     ~WordTreeTest()
@@ -88,6 +84,29 @@ TEST_F(WordTreeNodeTest, IncrementCount)
 {
   main_test_node->increment_count();
   EXPECT_EQ(main_test_node->get_count(), default_count + 1);
+}
+
+TEST_F(WordTreeTest, IteratorNoRepeated)
+{
+  std::string test_string = "DBFACEG";
+  std::string expected_string = "ABCDEFG";
+  for (int i = 0; i < test_string.length(); i++)
+  {
+    test_tree->add_word(std::string(1,test_string[i]));
+  }
+  WordTreeNode* current_node;
+  test_tree->iter_reset();
+  for (int i = 0; i < test_string.length(); i++)
+  {
+    current_node = test_tree->iter_next();
+    EXPECT_EQ(current_node->get_node_word(), std::string(1,expected_string[i]));
+  }
+  current_node = test_tree->iter_next();
+  EXPECT_EQ(NULL, current_node);
+  EXPECT_EQ(NULL, test_tree->iter_next());
+  test_tree->iter_reset();
+  EXPECT_EQ(test_tree->iter_next()->get_node_word(),
+            std::string(1,expected_string[0]));
 }
 
 int main(int argc, char **argv)
