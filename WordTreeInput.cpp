@@ -107,12 +107,12 @@ std::string most_common_word_from_file(std::string file_path)
   return word;
 }
 
-int count_of_most_common_word_from_file(std::string file_path);
+int count_of_most_common_word_from_file(std::string file_path)
 {
   WordTree* word_tree = create_tree_from_file(file_path);
   int word_count = count_of_most_common_word(word_tree);
   delete word_tree;
-  return word;
+  return word_count;
 }
 
 void output_tree_to_console(WordTree* word_tree)
