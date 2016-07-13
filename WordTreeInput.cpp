@@ -134,7 +134,7 @@ void output_tree_to_file(WordTree* word_tree, std::string file_path)
   file.close();
   std::cout << "Data written to file: " << file_path << std::endl;
 }
-
+/*
 int main(int argc, char *argv[])
 {
   WordTree* word_tree;
@@ -177,3 +177,4 @@ int main(int argc, char *argv[])
     delete word_tree;
   }
 }
+*/
