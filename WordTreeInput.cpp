@@ -8,10 +8,9 @@
 
 std::string exit_string = "exit";
 
-WordTree* create_tree_from_console(std::string exit_string)
+void add_to_tree_from_console(WordTree &word_tree, std::string exit_string)
 {
   std::string word_string;
-  WordTree* word_tree = new WordTree();
 
   while(true)
   {
@@ -24,12 +23,11 @@ WordTree* create_tree_from_console(std::string exit_string)
       break;
     }
 
-    word_tree->add_word(word_string);
+    word_tree.add_word(word_string);
   }
-  return word_tree;
 }
 
-WordTree* create_tree_from_file(std::string file_path)
+void add_to_tree_from_file(WordTree &word_tree, std::string file_path)
 {
   std::string line;
   int line_count = 0;
@@ -41,36 +39,30 @@ WordTree* create_tree_from_file(std::string file_path)
     throw "Unable to open file.";
   }
 
-  WordTree* word_tree = new WordTree();
-
   while(std::getline(file, line))
   {
-    word_tree->add_word(line);
+    word_tree.add_word(line);
     line_count++;
   }
 
   file.close();
   std::cout << "Read " << line_count << " lines from file: " << file_path;
   std::cout << std::endl;
-
-  return word_tree;
 }
 
-WordTree* create_tree_from_vector(std::vector<std::string> &word_vector)
+void add_to_tree_from_vector(WordTree &word_tree, std::vector<std::string> &word_vector)
 {
-  WordTree* word_tree = new WordTree();
   std::vector<std::string>::iterator v = word_vector.begin();
   while (v != word_vector.end())
   {
-    word_tree->add_word(*v);
+    word_tree.add_word(*v);
   }
-  return word_tree;
 }
 
-std::pair<std::string, int>* find_highest_count_node(WordTree* word_tree)
+std::pair<std::string, int>* find_highest_count_node(WordTree &word_tree)
 {
-  word_tree->iter_reset();
-  std::pair<std::string, int>* current_node = word_tree->iter_next();
+  word_tree.iter_reset();
+  std::pair<std::string, int>* current_node = word_tree.iter_next();
   if (!current_node)
   {
     throw "Tree is empty!";
@@ -82,18 +74,18 @@ std::pair<std::string, int>* find_highest_count_node(WordTree* word_tree)
     {
       max_node = current_node;
     }
-    current_node = word_tree->iter_next();
+    current_node = word_tree.iter_next();
   }
   return max_node;
 }
 
-std::string most_common_word(WordTree* word_tree)
+std::string most_common_word(WordTree &word_tree)
 {
   std::pair<std::string, int>* highest_count_node = find_highest_count_node(word_tree);
   return highest_count_node->first;
 }
 
-int count_of_most_common_word(WordTree* word_tree)
+int count_of_most_common_word(WordTree &word_tree)
 {
   std::pair<std::string, int>* highest_count_node = find_highest_count_node(word_tree);
   return highest_count_node->second;
@@ -101,26 +93,26 @@ int count_of_most_common_word(WordTree* word_tree)
 
 std::string most_common_word_from_file(std::string file_path)
 {
-  WordTree* word_tree = create_tree_from_file(file_path);
+  WordTree word_tree;
+  add_to_tree_from_file(word_tree, file_path);
   std::string word = most_common_word(word_tree);
-  delete word_tree;
   return word;
 }
 
 int count_of_most_common_word_from_file(std::string file_path)
 {
-  WordTree* word_tree = create_tree_from_file(file_path);
+  WordTree word_tree;
+  add_to_tree_from_file(word_tree, file_path);
   int word_count = count_of_most_common_word(word_tree);
-  delete word_tree;
   return word_count;
 }
 
-void output_tree_to_console(WordTree* word_tree)
+void output_tree_to_console(WordTree &word_tree)
 {
-  word_tree->write_data(&std::cout);
+  word_tree.write_data(&std::cout);
 }
 
-void output_tree_to_file(WordTree* word_tree, std::string file_path)
+void output_tree_to_file(WordTree &word_tree, std::string file_path)
 {
   std::ofstream file;
   file.open(file_path.c_str(), std::ofstream::trunc);
@@ -130,7 +122,7 @@ void output_tree_to_file(WordTree* word_tree, std::string file_path)
     throw "Unable to open file.";
   }
 
-  word_tree->write_data(&file);
+  word_tree.write_data(&file);
   file.close();
   std::cout << "Data written to file: " << file_path << std::endl;
 }
