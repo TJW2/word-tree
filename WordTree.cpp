@@ -125,7 +125,14 @@ WordTreeNode* WordTree::iter_next(void)
 
 void WordTree::iter_reset(void)
 {
-  _next_node = leftmost_child(_root_node);
+  if (_root_node)
+  {
+    _next_node = leftmost_child(_root_node);
+  }
+  else
+  {
+    _next_node = NULL;
+  }
 }
 
 bool WordTree::is_word_in_tree(std::string word)
