@@ -6,11 +6,14 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 #include "WordTree.h"
 
 // Reads a list of words, one per line, from the chosen input
 WordTree* create_tree_from_console(std::string exit_string);
 WordTree* create_tree_from_file(std::string file_path);
+
+WordTree* create_tree_from_vector(std::vector<std::string> &word_vector);
 
 WordTreeNode* find_highest_count_node(WordTree* word_tree);
 std::string most_common_word(WordTree* word_tree);
