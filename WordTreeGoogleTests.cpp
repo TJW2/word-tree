@@ -15,8 +15,8 @@ std::string right_test_node_name = "RightTestNode";
 int default_count = 1;
 int change_count = 2;
 
-WordTreeNode* default_l_branch = NULL;
-WordTreeNode* default_r_branch = NULL;
+WordTreeNode* default_l_branch = nullptr;
+WordTreeNode* default_r_branch = nullptr;
 
 
 class WordTreeNodeTest : public ::testing::Test
@@ -29,11 +29,11 @@ class WordTreeNodeTest : public ::testing::Test
     WordTreeNodeTest()
     {
       main_test_node = new WordTreeNode(main_test_node_name,
-                                        WordTreeNode::LEFT, NULL);
+                                        WordTreeNode::LEFT, nullptr);
       left_test_node = new WordTreeNode(left_test_node_name,
-                                        WordTreeNode::LEFT, NULL);
+                                        WordTreeNode::LEFT, nullptr);
       right_test_node = new WordTreeNode(right_test_node_name,
-                                         WordTreeNode::RIGHT, NULL);
+                                         WordTreeNode::RIGHT, nullptr);
     }
 
     ~WordTreeNodeTest()
@@ -104,8 +104,8 @@ TEST_F(WordTreeTest, IteratorNoRepeated)
     EXPECT_EQ(current_node->second, 1);
   }
   current_node = test_tree->iter_next();
-  EXPECT_EQ(NULL, current_node);
-  EXPECT_EQ(NULL, test_tree->iter_next());
+  EXPECT_EQ(nullptr, current_node);
+  EXPECT_EQ(nullptr, test_tree->iter_next());
   test_tree->iter_reset();
   EXPECT_EQ(test_tree->iter_next()->first,
             std::string(1,expected_string[0]));

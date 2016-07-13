@@ -12,8 +12,8 @@ WordTreeNode::WordTreeNode(std::string node_word, BRANCH_TYPE branch_type,
   _branch_type(branch_type),
   _parent_node(parent_node),
   _count(0),
-  _l_branch(NULL),
-  _r_branch(NULL)
+  _l_branch(nullptr),
+  _r_branch(nullptr)
 {
   increment_count();
 }
@@ -105,15 +105,15 @@ std::string WordTreeNode::to_string(void)
   os << "_branch_type: " << get_branch_type() << std::endl;
   os << "_l_branch: " << (get_branch(LEFT) ?
                           get_branch(LEFT)->get_node_word() :
-                          "NULL ")
+                          "nullptr ")
      << std::endl;
   os << "_r_branch: " << (get_branch(RIGHT) ?
                           get_branch(RIGHT)->get_node_word() :
-                          "NULL ")
+                          "nullptr ")
      << std::endl;
   os << "_parent_node: " << (get_parent_node() ?
                              get_parent_node()->get_node_word() :
-                             "NULL ")
+                             "nullptr ")
      << std::endl;
   return os.str();
 }
