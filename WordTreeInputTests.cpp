@@ -11,6 +11,20 @@ TEST(WordTreeInput, BasicInput)
   EXPECT_EQ(count_of_most_common_word_from_file(file_path), 2);
 }
 
+TEST(WordTreeInput, RepeatedInput)
+{
+  std::string file_path = "test-files/test-2.txt";
+  EXPECT_EQ(most_common_word_from_file(file_path), "A");
+  EXPECT_EQ(count_of_most_common_word_from_file(file_path),2);
+}
+
+TEST(WordTreeInput, EmptyInput)
+{
+  std::string file_path = "test-files/test-3.txt";
+  EXPECT_ANY_THROW(most_common_word_from_file(file_path));
+  EXPECT_ANY_THROW(count_of_most_common_word_from_file(file_path));
+}
+
 int main(int argc, char **argv)
 {
   ::testing::InitGoogleTest(&argc, argv);
