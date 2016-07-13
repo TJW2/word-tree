@@ -109,6 +109,24 @@ TEST_F(WordTreeTest, IteratorNoRepeated)
             std::string(1,expected_string[0]));
 }
 
+TEST_F(WordTreeTest, IteratorRepeated)
+{
+  std::string test_string = "BCACAB";
+  std::string expected_string = "ABC";
+  for (int i = 0; i < test_string.length(); i++)
+  {
+    test_tree->add_word(std::string(1,test_string[i]));
+  }
+  WordTreeNode* current_node;
+  test_tree->iter_reset();
+  for (int i = 0; i < expected_string.length(); i++)
+  {
+    current_node = test_tree->iter_next();
+    EXPECT_EQ(current_node->get_node_word(), std::string(1,expected_string[i]));
+    EXPECT_EQ(current_node->get_count(), 2);
+  }
+}
+
 int main(int argc, char **argv)
 {
   ::testing::InitGoogleTest(&argc, argv);
