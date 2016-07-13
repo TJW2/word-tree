@@ -112,15 +112,18 @@ WordTreeNode* WordTree::find_next_node(WordTreeNode* node)
   return next_node;
 }
 
-WordTreeNode* WordTree::iter_next(void)
+std::pair<std::string, int>*  WordTree::iter_next(void)
 {
   WordTreeNode* current_node = _next_node;
+  std::pair<std::string, int>* node_data = NULL;
   if(current_node)
   {
     // If we have not reached the end of the tree
     _next_node = find_next_node(current_node);
+    node_data = new std::pair<std::string, int>(current_node->get_node_word(),
+                                                current_node->get_count());
   }
-  return current_node;
+  return node_data;
 }
 
 void WordTree::iter_reset(void)

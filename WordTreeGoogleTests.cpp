@@ -2,6 +2,7 @@
 /// TJW2
 
 #include <iostream>
+#include <tuple>
 #include "WordTree.h"
 #include "WordTreeNode.h"
 #include "gtest/gtest.h"
@@ -94,18 +95,19 @@ TEST_F(WordTreeTest, IteratorNoRepeated)
   {
     test_tree->add_word(std::string(1,test_string[i]));
   }
-  WordTreeNode* current_node;
+  std::pair<std::string, int>* current_node;
   test_tree->iter_reset();
   for (int i = 0; i < test_string.length(); i++)
   {
     current_node = test_tree->iter_next();
-    EXPECT_EQ(current_node->get_node_word(), std::string(1,expected_string[i]));
+    EXPECT_EQ(current_node->first, std::string(1,expected_string[i]));
+    EXPECT_EQ(current_node->second, 1);
   }
   current_node = test_tree->iter_next();
   EXPECT_EQ(NULL, current_node);
   EXPECT_EQ(NULL, test_tree->iter_next());
   test_tree->iter_reset();
-  EXPECT_EQ(test_tree->iter_next()->get_node_word(),
+  EXPECT_EQ(test_tree->iter_next()->first,
             std::string(1,expected_string[0]));
 }
 
@@ -117,13 +119,13 @@ TEST_F(WordTreeTest, IteratorRepeated)
   {
     test_tree->add_word(std::string(1,test_string[i]));
   }
-  WordTreeNode* current_node;
+  std::pair<std::string, int>* current_node;
   test_tree->iter_reset();
   for (int i = 0; i < expected_string.length(); i++)
   {
     current_node = test_tree->iter_next();
-    EXPECT_EQ(current_node->get_node_word(), std::string(1,expected_string[i]));
-    EXPECT_EQ(current_node->get_count(), 2);
+    EXPECT_EQ(current_node->first, std::string(1,expected_string[i]));
+    EXPECT_EQ(current_node->second, 2);
   }
 }
 

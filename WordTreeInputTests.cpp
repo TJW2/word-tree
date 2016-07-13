@@ -4,6 +4,13 @@
 #include "WordTreeInput.h"
 #include "gtest/gtest.h"
 
+TEST(WordTreeInput, SingleInput)
+{
+  std::string file_path = "test-files/test-0.txt";
+  EXPECT_EQ(most_common_word_from_file(file_path), "A");
+  EXPECT_EQ(count_of_most_common_word_from_file(file_path), 1);
+}
+
 TEST(WordTreeInput, BasicInput)
 {
   std::string file_path = "test-files/test-1.txt";

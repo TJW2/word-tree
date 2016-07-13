@@ -5,6 +5,7 @@
 #define WORD_TREE_INPUT_H
 
 #include <string>
+#include <tuple>
 #include <iostream>
 #include <vector>
 #include "WordTree.h"
@@ -15,7 +16,7 @@ WordTree* create_tree_from_file(std::string file_path);
 
 WordTree* create_tree_from_vector(std::vector<std::string> &word_vector);
 
-WordTreeNode* find_highest_count_node(WordTree* word_tree);
+std::pair<std::string, int>*  find_highest_count_node(WordTree* word_tree);
 
 std::string most_common_word(WordTree* word_tree);
 int count_of_most_common_word(WordTree* word_tree);

@@ -67,18 +67,18 @@ WordTree* create_tree_from_vector(std::vector<std::string> &word_vector)
   return word_tree;
 }
 
-WordTreeNode* find_highest_count_node(WordTree* word_tree)
+std::pair<std::string, int>* find_highest_count_node(WordTree* word_tree)
 {
   word_tree->iter_reset();
-  WordTreeNode* current_node = word_tree->iter_next();
+  std::pair<std::string, int>* current_node = word_tree->iter_next();
   if (!current_node)
   {
     throw "Tree is empty!";
   }
-  WordTreeNode* max_node = current_node;
+  std::pair<std::string, int>*  max_node = current_node;
   while(current_node)
   {
-    if (current_node->get_count() > max_node->get_count())
+    if (current_node->second > max_node->second)
     {
       max_node = current_node;
     }
@@ -89,14 +89,14 @@ WordTreeNode* find_highest_count_node(WordTree* word_tree)
 
 std::string most_common_word(WordTree* word_tree)
 {
-  WordTreeNode* highest_count_node = find_highest_count_node(word_tree);
-  return highest_count_node->get_node_word();
+  std::pair<std::string, int>* highest_count_node = find_highest_count_node(word_tree);
+  return highest_count_node->first;
 }
 
 int count_of_most_common_word(WordTree* word_tree)
 {
-  WordTreeNode* highest_count_node = find_highest_count_node(word_tree);
-  return highest_count_node->get_count();
+  std::pair<std::string, int>* highest_count_node = find_highest_count_node(word_tree);
+  return highest_count_node->second;
 }
 
 std::string most_common_word_from_file(std::string file_path)

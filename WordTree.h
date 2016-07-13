@@ -5,6 +5,7 @@
 #define WORD_TREE_H
 
 #include <string>
+#include <tuple>
 #include "WordTreeNode.h"
 
 class WordTree
@@ -34,7 +35,7 @@ class WordTree
     void add_word(std::string word);
 
     // Returns the next node in the current iteration
-    WordTreeNode* iter_next(void);
+    std::pair<std::string, int>* iter_next(void);
     //Resets the iteration to the first node in the tree
     void iter_reset(void);
 
