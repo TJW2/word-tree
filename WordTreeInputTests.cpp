@@ -5,12 +5,27 @@
 #include "MockWordTree.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+using ::testing::Return;
 
 TEST(WordTreeInput, RealSingleInput)
 {
   std::string file_path = "test-files/test-0.txt";
   EXPECT_EQ(most_common_word_from_file(file_path), "A");
   EXPECT_EQ(count_of_most_common_word_from_file(file_path), 1);
+}
+
+TEST(WordTreeInput, MockSingleInput)
+{
+  std::string file_path = "test-files/test-0.txt";
+  std::pair<std::string, int> mock_pair("M",2);
+  MockWordTree mock_tree;
+  EXPECT_CALL(mock_tree, add_word("A")).Times(1);
+  add_to_tree_from_file(mock_tree, file_path);
+  EXPECT_CALL(mock_tree, iter_reset()).Times(1);
+  EXPECT_CALL(mock_tree,
+              iter_next()).WillOnce(Return(&mock_pair))
+                          .WillOnce(Return((std::pair<std::string, int>*)NULL));
+  EXPECT_EQ(most_common_word(mock_tree), mock_pair.first);
 }
 
 TEST(WordTreeInput, RealBasicInput)
