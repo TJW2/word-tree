@@ -56,6 +56,22 @@ WordTree* create_tree_from_file(std::string file_path)
   return word_tree;
 }
 
+WordTreeNode* find_highest_count_node(WordTree* word_tree)
+{
+  word_tree->iter_reset();
+  WordTreeNode* current_node = word_tree->iter_next();
+  WordTreeNode* max_node = NULL;
+  while(current_node)
+  {
+    if (!max_node || current_node->get_count() > max_node->get_count())
+    {
+      max_node = current_node;
+    }
+    current_node = word_tree->iter_next();
+  }
+  return max_node;
+}
+
 void output_tree_to_console(WordTree* word_tree)
 {
   word_tree->write_data(&std::cout);

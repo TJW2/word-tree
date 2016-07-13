@@ -12,6 +12,8 @@
 WordTree* create_tree_from_console(std::string exit_string);
 WordTree* create_tree_from_file(std::string file_path);
 
+WordTreeNode* find_highest_count_node(WordTree* word_tree);
+
 // Writes a list of word, count pairs to the chosen output in alphabetical order
 void output_tree_to_console(WordTree* word_tree);
 void output_tree_to_file(WordTree* word_tree, std::string file_path);
