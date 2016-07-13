@@ -65,7 +65,7 @@ WordTree::WordTree(void):
 {
 }
 
-virtual void WordTree::add_word(std::string word)
+void WordTree::add_word(std::string word)
 {
   //If there is no root node yet
   if (!_root_node)
@@ -112,7 +112,7 @@ WordTreeNode* WordTree::find_next_node(WordTreeNode* node)
   return next_node;
 }
 
-virtual std::pair<std::string, int>*  WordTree::iter_next(void)
+std::pair<std::string, int>*  WordTree::iter_next(void)
 {
   WordTreeNode* current_node = _next_node;
   std::pair<std::string, int>* node_data = NULL;
@@ -126,7 +126,7 @@ virtual std::pair<std::string, int>*  WordTree::iter_next(void)
   return node_data;
 }
 
-virtual void WordTree::iter_reset(void)
+void WordTree::iter_reset(void)
 {
   if (_root_node)
   {
