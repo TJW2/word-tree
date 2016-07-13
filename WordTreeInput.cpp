@@ -60,16 +60,32 @@ WordTreeNode* find_highest_count_node(WordTree* word_tree)
 {
   word_tree->iter_reset();
   WordTreeNode* current_node = word_tree->iter_next();
-  WordTreeNode* max_node = NULL;
+  if (!current_node)
+  {
+    throw "Tree is empty!";
+  }
+  WordTreeNode* max_node = current_node;
   while(current_node)
   {
-    if (!max_node || current_node->get_count() > max_node->get_count())
+    if (current_node->get_count() > max_node->get_count())
     {
       max_node = current_node;
     }
     current_node = word_tree->iter_next();
   }
   return max_node;
+}
+
+std::string most_common_word(WordTree* word_tree)
+{
+  WordTreeNode* highest_count_node = find_highest_count_node(word_tree);
+  return highest_count_node->get_node_word();
+}
+
+int count_of_most_common_word(WordTree* word_tree)
+{
+  WordTreeNode* highest_count_node = find_highest_count_node(word_tree);
+  return highest_count_node->get_count();
 }
 
 void output_tree_to_console(WordTree* word_tree)
