@@ -134,7 +134,7 @@ void WordTree::iter_reset(void)
   }
   else
   {
-
+    _next_node = nullptr;
   }
 }
 
