@@ -99,6 +99,22 @@ int count_of_most_common_word(WordTree* word_tree)
   return highest_count_node->get_count();
 }
 
+std::string most_common_word_from_file(std::string file_path)
+{
+  WordTree* word_tree = create_tree_from_file(file_path);
+  std::string word = most_common_word(word_tree);
+  delete word_tree;
+  return word;
+}
+
+int count_of_most_common_word_from_file(std::string file_path);
+{
+  WordTree* word_tree = create_tree_from_file(file_path);
+  int word_count = count_of_most_common_word(word_tree);
+  delete word_tree;
+  return word;
+}
+
 void output_tree_to_console(WordTree* word_tree)
 {
   word_tree->write_data(&std::cout);
