@@ -46,8 +46,6 @@ void add_to_tree_from_file(WordTree &word_tree, std::string file_path)
   }
 
   file.close();
-  std::cout << "Read " << line_count << " lines from file: " << file_path;
-  std::cout << std::endl;
 }
 
 void add_to_tree_from_vector(WordTree &word_tree, std::vector<std::string> &word_vector)
@@ -124,7 +122,6 @@ void output_tree_to_file(WordTree &word_tree, std::string file_path)
 
   word_tree.write_data(&file);
   file.close();
-  std::cout << "Data written to file: " << file_path << std::endl;
 }
 /*
 int main(int argc, char *argv[])

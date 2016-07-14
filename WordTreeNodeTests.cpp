@@ -17,8 +17,8 @@ std::string right_test_node_name = "RightTestNode";
 std::string destructor_test_node_name = "DestructorTestNode";
 int default_count = 1;
 int change_count = 2;
-WordTreeNode* default_l_branch = NULL;
-WordTreeNode* default_r_branch = NULL;
+WordTreeNode* default_l_branch = nullptr;
+WordTreeNode* default_r_branch = nullptr;
 
 bool run_automated_tests(void)
 {
@@ -33,7 +33,7 @@ bool run_automated_tests(void)
     //Constructor Tests
     WordTreeNode* main_test_node = new WordTreeNode(main_test_node_name,
                                                     WordTreeNode::LEFT,
-                                                    NULL);
+                                                    nullptr);
     test_helper(main_test_node->get_node_word() == main_test_node_name,
              "Constructor setting _node_word", &tests_passed);
     test_helper(main_test_node->get_count() == default_count,
@@ -61,7 +61,7 @@ bool run_automated_tests(void)
     //Branch Setter Tests
     WordTreeNode* left_test_node = new WordTreeNode(left_test_node_name,
                                                     WordTreeNode::LEFT,
-                                                    NULL);
+                                                    nullptr);
     main_test_node->set_branch(WordTreeNode::LEFT, left_test_node);
     test_helper(main_test_node->get_branch(WordTreeNode::LEFT) == left_test_node,
              "Setter for _l_branch", &tests_passed);
@@ -112,7 +112,7 @@ bool run_to_string_tests()
     //Initialisation
     WordTreeNode* main_test_node = new WordTreeNode(main_test_node_name,
                                                     WordTreeNode::LEFT,
-                                                    NULL);
+                                                    nullptr);
     WordTreeNode* left_test_node = new WordTreeNode(left_test_node_name,
                                                     WordTreeNode::LEFT,
                                                     main_test_node);
@@ -141,7 +141,7 @@ bool run_to_string_tests()
 
     std::cout << "Testing to_string method, left branch null: ";
     std::cout << std::endl;
-    main_test_node->set_branch(WordTreeNode::LEFT, NULL);
+    main_test_node->set_branch(WordTreeNode::LEFT, nullptr);
     std::cout << main_test_node->to_string() << std::endl;
 
     //Destruction
@@ -168,7 +168,7 @@ bool run_write_data_tests()
     //Initialisation
     WordTreeNode* main_test_node = new WordTreeNode(main_test_node_name,
                                                     WordTreeNode::LEFT,
-                                                    NULL);
+                                                    nullptr);
     WordTreeNode* left_test_node = new WordTreeNode(left_test_node_name,
                                                     WordTreeNode::LEFT,
                                                     main_test_node);
@@ -196,7 +196,7 @@ bool run_write_data_tests()
 
     std::cout << "Testing write_data method, left branch null: ";
     std::cout << std::endl;
-    main_test_node->set_branch(WordTreeNode::LEFT, NULL);
+    main_test_node->set_branch(WordTreeNode::LEFT, nullptr);
     main_test_node->write_data(&std::cout);
 
     //Destruction

@@ -61,7 +61,7 @@ void WordTree::delete_node(WordTreeNode* node)
 }
 
 WordTree::WordTree(void):
-  _root_node(NULL)
+  _root_node(nullptr)
 {
 }
 
@@ -70,7 +70,7 @@ void WordTree::add_word(std::string word)
   //If there is no root node yet
   if (!_root_node)
   {
-    _root_node = new WordTreeNode(word, WordTreeNode::LEFT, NULL);
+    _root_node = new WordTreeNode(word, WordTreeNode::LEFT, nullptr);
     //LEFT required here for iterator
     _next_node = _root_node;
   }
@@ -115,7 +115,7 @@ WordTreeNode* WordTree::find_next_node(WordTreeNode* node)
 std::pair<std::string, int>*  WordTree::iter_next(void)
 {
   WordTreeNode* current_node = _next_node;
-  std::pair<std::string, int>* node_data = NULL;
+  std::pair<std::string, int>* node_data = nullptr;
   if(current_node)
   {
     // If we have not reached the end of the tree
@@ -134,7 +134,7 @@ void WordTree::iter_reset(void)
   }
   else
   {
-    _next_node = NULL;
+    _next_node = nullptr;
   }
 }
 
